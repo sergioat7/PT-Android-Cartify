@@ -4,8 +4,9 @@ import com.aragones.sergio.cartify.data.remote.model.Products
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class ProductRemoteDataSource(private val api: ProductApi) {
+class ProductRemoteDataSource @Inject constructor(private val api: ProductApi) {
 
     suspend fun fetchProducts(): Flow<Result<Products>> {
         return flow {
