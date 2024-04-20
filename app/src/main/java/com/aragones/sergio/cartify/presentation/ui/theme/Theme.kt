@@ -1,4 +1,4 @@
-package com.aragones.sergio.cartify.ui.theme
+package com.aragones.sergio.cartify.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

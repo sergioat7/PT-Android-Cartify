@@ -1,4 +1,4 @@
-package com.aragones.sergio.cartify.ui.theme
+package com.aragones.sergio.cartify.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
