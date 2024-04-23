@@ -3,6 +3,7 @@ package com.aragones.sergio.cartify.presentation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,6 +18,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -54,6 +56,8 @@ fun ProductListScreen(
     onRemoveProduct: (Product) -> Unit
 ) {
 
+    val totalPrice = cart.sumOf { it.price }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -77,8 +81,8 @@ fun ProductListScreen(
 
         LazyColumn(
             modifier = Modifier
-                .fillMaxWidth()
                 .padding(24.dp)
+                .weight(1f)
         ) {
             items(products) { product ->
 
@@ -119,6 +123,39 @@ fun ProductListScreen(
                     }
                 }
             }
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colors.primary)
+        ) {
+            Text(
+                text = "$totalPrice €",
+                modifier = Modifier.padding(24.dp),
+                style = TextStyle(
+                    color = MaterialTheme.colors.onPrimary,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 24.sp
+                )
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                text = "View cart (${cart.count()})",
+                modifier = Modifier.padding(24.dp),
+                style = TextStyle(
+                    color = MaterialTheme.colors.onPrimary,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 24.sp
+                )
+            )
+            Icon(
+                Icons.Default.ArrowForward,
+                contentDescription = "",
+                modifier = Modifier.align(Alignment.CenterVertically),
+                tint = MaterialTheme.colors.onPrimary
+            )
+            Spacer(modifier = Modifier.weight(1f))
         }
     }
 }
