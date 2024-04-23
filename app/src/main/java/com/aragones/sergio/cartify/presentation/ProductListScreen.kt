@@ -207,21 +207,21 @@ fun ProductListScreen(
                 )
             )
             Spacer(modifier = Modifier.weight(1f))
-            Text(
-                text = "View cart (${cart.count()})",
-                modifier = Modifier.padding(24.dp),
-                style = TextStyle(
-                    color = MaterialTheme.colors.onPrimary,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp
+            Button(onClick = { /*TODO*/ }, contentPadding = PaddingValues(0.dp)) {
+                Text(
+                    text = "View cart (${cart.count()})",
+                    modifier = Modifier.padding(24.dp),
+                    style = TextStyle(
+                        color = MaterialTheme.colors.onPrimary, fontSize = 24.sp
+                    )
                 )
-            )
-            Icon(
-                Icons.Default.ArrowForward,
-                contentDescription = "",
-                modifier = Modifier.align(Alignment.CenterVertically),
-                tint = MaterialTheme.colors.onPrimary
-            )
+                Icon(
+                    Icons.Default.ArrowForward,
+                    contentDescription = "",
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    tint = MaterialTheme.colors.onPrimary
+                )
+            }
             Spacer(modifier = Modifier.weight(1f))
         }
     }

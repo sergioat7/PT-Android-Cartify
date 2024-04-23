@@ -11,15 +11,9 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColors(
-    primary = Purple80,
-    secondary = PurpleGrey80
-)
+private val DarkColorScheme = darkColors()
 
-private val LightColorScheme = lightColors(
-    primary = Purple40,
-    secondary = PurpleGrey40
-)
+private val LightColorScheme = lightColors()
 
 @Composable
 fun CartifyTheme(
