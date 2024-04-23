@@ -3,44 +3,28 @@ package com.aragones.sergio.cartify.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.activity.viewModels
+import com.aragones.sergio.cartify.presentation.ui.productlist.ProductListScreen
+import com.aragones.sergio.cartify.presentation.ui.productlist.ProductListViewModel
 import com.aragones.sergio.cartify.presentation.ui.theme.CartifyTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: ProductListViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             CartifyTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
+                ProductListScreen(
+                    products = viewModel.products,
+                    cart = viewModel.cart,
+                    onAddProduct = { viewModel.addProduct(it) },
+                    onRemoveProduct = { viewModel.removeProduct(it) })
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CartifyTheme {
-        Greeting("Android")
+        viewModel.fetchProducts()
     }
 }

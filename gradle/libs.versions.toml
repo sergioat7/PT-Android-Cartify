@@ -6,8 +6,10 @@ junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.7.0"
+lifecycle = "2.7.0"
 activityCompose = "1.9.0"
 composeBom = "2023.08.00"
+compose-livedata = "1.6.6"
 retrofit = "2.9.0"
 hilt = "2.47"
 
@@ -15,6 +17,7 @@ hilt = "2.47"
 #Android
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
 
 #Compose
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -25,6 +28,7 @@ androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-material = { group = "androidx.compose.material", name = "material" }
+compose-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "compose-livedata" }
 
 #Retrofit
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
