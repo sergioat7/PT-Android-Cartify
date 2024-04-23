@@ -1,4 +1,4 @@
-package com.aragones.sergio.cartify.presentation
+package com.aragones.sergio.cartify.presentation.ui.productlist
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
