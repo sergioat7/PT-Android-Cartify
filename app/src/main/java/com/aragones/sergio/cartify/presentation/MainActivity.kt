@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -29,14 +31,42 @@ class MainActivity : ComponentActivity() {
                     navController = navigationController,
                     startDestination = Routes.ProductList.route
                 ) {
-                    composable(route = Routes.ProductList.route) {
+                    composable(
+                        route = Routes.ProductList.route,
+                        exitTransition = {
+                            slideOutOfContainer(
+                                AnimatedContentTransitionScope.SlideDirection.Left,
+                                animationSpec = tween(700)
+                            )
+                        },
+                        popEnterTransition = {
+                            slideIntoContainer(
+                                AnimatedContentTransitionScope.SlideDirection.Right,
+                                animationSpec = tween(700)
+                            )
+                        }
+                    ) {
                         ProductListScreen(products = viewModel.products,
                             cart = viewModel.cart,
                             onAddProduct = { viewModel.addProduct(it) },
                             onRemoveProduct = { viewModel.removeProduct(it) },
                             onNavigateToCart = { navigationController.navigate(Routes.Cart.route) })
                     }
-                    composable(route = Routes.Cart.route) {
+                    composable(
+                        route = Routes.Cart.route,
+                        enterTransition = {
+                            slideIntoContainer(
+                                AnimatedContentTransitionScope.SlideDirection.Left,
+                                animationSpec = tween(700)
+                            )
+                        },
+                        popExitTransition = {
+                            slideOutOfContainer(
+                                AnimatedContentTransitionScope.SlideDirection.Right,
+                                animationSpec = tween(700)
+                            )
+                        }
+                    ) {
                         CartScreen(cart = viewModel.cart,
                             onGoBack = { navigationController.navigateUp() })
                     }
