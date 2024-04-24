@@ -64,6 +64,8 @@ dependencies {
     implementation(libs.bundles.compose)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    
+    implementation(libs.compose.navigation)
 
     implementation(libs.bundles.retrofit)
 
