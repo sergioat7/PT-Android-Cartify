@@ -43,13 +43,18 @@ import com.aragones.sergio.cartify.domain.model.Product
 @Preview
 @Composable
 fun ProductListScreenPreview() {
-    ProductListScreen(products = listOf(
-        Product("VOUCHER", "Cabify Voucher", 5.0),
-        Product("TSHIRT", "Cabify T-Shirt", 20.0),
-        Product("MUG", "Cabify Coffee Mug", 7.5)
-    ), cart = listOf(
-        Product("VOUCHER", "Cabify Voucher", 5.0), Product("VOUCHER", "Cabify Voucher", 5.0)
-    ), onAddProduct = {}, onRemoveProduct = {})
+    ProductListScreen(
+        products = listOf(
+            Product("VOUCHER", "Cabify Voucher", 5.0),
+            Product("TSHIRT", "Cabify T-Shirt", 20.0),
+            Product("MUG", "Cabify Coffee Mug", 7.5)
+        ),
+        cart = listOf(
+            Product("VOUCHER", "Cabify Voucher", 5.0), Product("VOUCHER", "Cabify Voucher", 5.0)
+        ),
+        onAddProduct = {},
+        onRemoveProduct = {}
+    )
 }
 
 @Composable
@@ -125,21 +130,15 @@ fun ProductListScreen(
                             )
                         }
                         if (count == 0) {
-                            Button(
+                            CustomActionButton(
                                 onClick = { onAddProduct(product) },
-                                shape = RoundedCornerShape(buttonCornerRadius),
-                                colors = ButtonDefaults.buttonColors(
-                                    backgroundColor = MaterialTheme.colors.secondary
-                                ),
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
                                     .width(buttonWidth)
-                                    .height(buttonHeight)
-                            ) {
-                                Text(
-                                    text = "Add", style = MaterialTheme.typography.button
-                                )
-                            }
+                                    .height(buttonHeight),
+                                shape = RoundedCornerShape(buttonCornerRadius),
+                                text = "Add"
+                            )
                         } else {
                             Row(
                                 horizontalArrangement = Arrangement.Center,
@@ -197,22 +196,31 @@ fun ProductListScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colors.primary)
+                .background(MaterialTheme.colors.primaryVariant)
         ) {
             Text(
-                text = "$totalPrice €", modifier = Modifier.padding(24.dp), style = TextStyle(
+                text = "$totalPrice €",
+                modifier = Modifier.padding(24.dp),
+                style = TextStyle(
                     color = MaterialTheme.colors.onPrimary,
                     fontWeight = FontWeight.Bold,
                     fontSize = 24.sp
                 )
             )
             Spacer(modifier = Modifier.weight(1f))
-            Button(onClick = { /*TODO*/ }, contentPadding = PaddingValues(0.dp)) {
+            Button(
+                onClick = { /*TODO*/ },
+                contentPadding = PaddingValues(0.dp),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = MaterialTheme.colors.primaryVariant
+                )
+            ) {
                 Text(
                     text = "View cart (${cart.count()})",
                     modifier = Modifier.padding(24.dp),
                     style = TextStyle(
-                        color = MaterialTheme.colors.onPrimary, fontSize = 24.sp
+                        color = MaterialTheme.colors.onPrimary,
+                        fontSize = 24.sp
                     )
                 )
                 Icon(
@@ -228,7 +236,12 @@ fun ProductListScreen(
 }
 
 @Composable
-fun CustomIconButton(icon: Painter, modifier: Modifier, shape: Shape, onClick: () -> Unit) {
+fun CustomIconButton(
+    icon: Painter,
+    modifier: Modifier,
+    shape: Shape,
+    onClick: () -> Unit
+) {
 
     Button(
         onClick = { onClick() },
@@ -241,6 +254,30 @@ fun CustomIconButton(icon: Painter, modifier: Modifier, shape: Shape, onClick: (
     ) {
         Icon(
             painter = icon, contentDescription = "", tint = MaterialTheme.colors.onSecondary
+        )
+    }
+}
+
+@Composable
+fun CustomActionButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    shape: Shape,
+    text: String
+) {
+
+    Button(
+        onClick = { onClick() },
+        modifier = modifier,
+        shape = shape,
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = MaterialTheme.colors.secondary
+        )
+    ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.button,
+            color = MaterialTheme.colors.onSecondary
         )
     }
 }
