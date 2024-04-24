@@ -53,7 +53,8 @@ fun ProductListScreenPreview() {
             Product("VOUCHER", "Cabify Voucher", 5.0), Product("VOUCHER", "Cabify Voucher", 5.0)
         ),
         onAddProduct = {},
-        onRemoveProduct = {}
+        onRemoveProduct = {},
+        onNavigateToCart = {}
     )
 }
 
@@ -62,7 +63,8 @@ fun ProductListScreen(
     products: List<Product>,
     cart: List<Product>,
     onAddProduct: (Product) -> Unit,
-    onRemoveProduct: (Product) -> Unit
+    onRemoveProduct: (Product) -> Unit,
+    onNavigateToCart: () -> Unit
 ) {
 
     val buttonWidth = 100.dp
@@ -209,7 +211,7 @@ fun ProductListScreen(
             )
             Spacer(modifier = Modifier.weight(1f))
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { onNavigateToCart() },
                 contentPadding = PaddingValues(0.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = MaterialTheme.colors.primaryVariant
