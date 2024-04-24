@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,6 +36,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.aragones.sergio.cartify.R
@@ -147,7 +149,7 @@ fun ProductListScreen(
                                 verticalAlignment = Alignment.CenterVertically,
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .width(buttonWidth)
+                                    .widthIn(buttonWidth, Dp.Unspecified)
                                     .height(buttonHeight)
                             ) {
                                 CustomIconButton(
@@ -164,13 +166,14 @@ fun ProductListScreen(
                                 }
                                 Box(
                                     modifier = Modifier
-                                        .weight(1f)
                                         .fillMaxHeight()
                                         .background(MaterialTheme.colors.surface)
                                 ) {
                                     Text(
                                         text = "$count",
-                                        modifier = Modifier.align(Alignment.Center),
+                                        modifier = Modifier
+                                            .align(Alignment.Center)
+                                            .padding(horizontal = 4.dp),
                                         style = TextStyle(
                                             color = MaterialTheme.colors.primary,
                                             fontWeight = FontWeight.Bold
