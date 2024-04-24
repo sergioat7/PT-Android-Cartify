@@ -195,44 +195,46 @@ fun ProductListScreen(
             }
         }
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colors.primaryVariant)
-        ) {
-            Text(
-                text = "$totalPrice €",
-                modifier = Modifier.padding(24.dp),
-                style = TextStyle(
-                    color = MaterialTheme.colors.onPrimary,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp
-                )
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Button(
-                onClick = { onNavigateToCart() },
-                contentPadding = PaddingValues(0.dp),
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = MaterialTheme.colors.primaryVariant
-                )
+        if (cart.isNotEmpty()) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colors.primaryVariant)
             ) {
                 Text(
-                    text = "View cart (${cart.count()})",
+                    text = "$totalPrice €",
                     modifier = Modifier.padding(24.dp),
                     style = TextStyle(
                         color = MaterialTheme.colors.onPrimary,
+                        fontWeight = FontWeight.Bold,
                         fontSize = 24.sp
                     )
                 )
-                Icon(
-                    Icons.Default.ArrowForward,
-                    contentDescription = "",
-                    modifier = Modifier.align(Alignment.CenterVertically),
-                    tint = MaterialTheme.colors.onPrimary
-                )
+                Spacer(modifier = Modifier.weight(1f))
+                Button(
+                    onClick = { onNavigateToCart() },
+                    contentPadding = PaddingValues(0.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = MaterialTheme.colors.primaryVariant
+                    )
+                ) {
+                    Text(
+                        text = "View cart (${cart.count()})",
+                        modifier = Modifier.padding(24.dp),
+                        style = TextStyle(
+                            color = MaterialTheme.colors.onPrimary,
+                            fontSize = 24.sp
+                        )
+                    )
+                    Icon(
+                        Icons.Default.ArrowForward,
+                        contentDescription = "",
+                        modifier = Modifier.align(Alignment.CenterVertically),
+                        tint = MaterialTheme.colors.onPrimary
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1f))
             }
-            Spacer(modifier = Modifier.weight(1f))
         }
     }
 }
