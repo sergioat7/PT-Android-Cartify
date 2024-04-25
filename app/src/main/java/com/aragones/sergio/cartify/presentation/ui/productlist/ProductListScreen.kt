@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.aragones.sergio.cartify.R
+import com.aragones.sergio.cartify.domain.model.Discount
 import com.aragones.sergio.cartify.domain.model.Product
 
 @Preview
@@ -47,8 +48,8 @@ import com.aragones.sergio.cartify.domain.model.Product
 fun ProductListScreenPreview() {
     ProductListScreen(
         products = listOf(
-            Product("VOUCHER", "Cabify Voucher", 5.0),
-            Product("TSHIRT", "Cabify T-Shirt", 20.0),
+            Product("VOUCHER", "Cabify Voucher", 5.0, discount = Discount.TWO_FOR_ONE),
+            Product("TSHIRT", "Cabify T-Shirt", 20.0, discount = Discount.MORE_THAN_3),
             Product("MUG", "Cabify Coffee Mug", 7.5)
         ),
         cart = listOf(
@@ -140,6 +141,16 @@ fun ProductListScreen(
                                     fontSize = 16.sp
                                 )
                             )
+                            product.discount?.let { discount ->
+                                Text(
+                                    text = "Discount: ${discount.description}",
+                                    modifier = Modifier.padding(top = 8.dp),
+                                    style = TextStyle(
+                                        color = MaterialTheme.colors.onPrimary,
+                                        fontSize = 16.sp
+                                    )
+                                )
+                            }
                         }
                         if (count == 0) {
                             CustomActionButton(
