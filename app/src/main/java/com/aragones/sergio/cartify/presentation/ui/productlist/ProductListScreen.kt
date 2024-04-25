@@ -52,7 +52,8 @@ fun ProductListScreenPreview() {
             Product("MUG", "Cabify Coffee Mug", 7.5)
         ),
         cart = listOf(
-            Product("VOUCHER", "Cabify Voucher", 5.0), Product("VOUCHER", "Cabify Voucher", 5.0)
+            Product("VOUCHER", "Cabify Voucher", 5.0),
+            Product("VOUCHER", "Cabify Voucher", 5.0)
         ),
         onAddProduct = {},
         onRemoveProduct = {},
@@ -84,13 +85,16 @@ fun ProductListScreen(
         TopAppBar(
             title = {
                 Text(
-                    text = "Products", style = TextStyle(
+                    text = "Products",
+                    style = TextStyle(
                         color = MaterialTheme.colors.primary,
                         fontWeight = FontWeight.Bold,
                         fontSize = 24.sp
                     )
                 )
-            }, backgroundColor = MaterialTheme.colors.surface, elevation = 8.dp
+            },
+            backgroundColor = MaterialTheme.colors.surface,
+            elevation = 8.dp
         )
 
         LazyColumn(
@@ -121,15 +125,19 @@ fun ProductListScreen(
                                 .padding(horizontal = 8.dp)
                         ) {
                             Text(
-                                text = product.name, style = TextStyle(
+                                text = product.name,
+                                style = TextStyle(
                                     color = MaterialTheme.colors.onPrimary,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 20.sp
                                 )
                             )
                             Text(
-                                text = "${product.price} €", style = TextStyle(
-                                    color = MaterialTheme.colors.onPrimary, fontSize = 16.sp
+                                text = "${product.price} €",
+                                modifier = Modifier.padding(top = 8.dp),
+                                style = TextStyle(
+                                    color = MaterialTheme.colors.onPrimary,
+                                    fontSize = 16.sp
                                 )
                             )
                         }
@@ -186,7 +194,8 @@ fun ProductListScreen(
                                         .align(Alignment.CenterVertically)
                                         .width(buttonHeight),
                                     shape = RoundedCornerShape(
-                                        topEnd = buttonCornerRadius, bottomEnd = buttonCornerRadius
+                                        topEnd = buttonCornerRadius,
+                                        bottomEnd = buttonCornerRadius
                                     )
                                 ) {
                                     onAddProduct(product)

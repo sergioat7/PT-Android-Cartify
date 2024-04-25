@@ -67,8 +67,10 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                     ) {
-                        CartScreen(cart = viewModel.cart,
-                            onGoBack = { navigationController.navigateUp() })
+                        CartScreen(
+                            cart = viewModel.cart,
+                            onGoBack = { navigationController.navigateUp() }
+                        )
                     }
                 }
             }

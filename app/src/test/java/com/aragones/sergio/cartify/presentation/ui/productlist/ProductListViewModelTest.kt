@@ -17,11 +17,10 @@ class ProductListViewModelTest {
 
     private val repository: ProductsRepository = mockk()
     private lateinit var sut: ProductListViewModel
-    private val products = listOf(
-        Product("VOUCHER", "Cabify Voucher", 5.0),
-        Product("TSHIRT", "Cabify T-Shirt", 20.0),
-        Product("MUG", "Cabify Coffee Mug", 7.5)
-    )
+    private val voucher = Product("VOUCHER", "Cabify Voucher", 5.0)
+    private val tShirt = Product("TSHIRT", "Cabify T-Shirt", 20.0)
+    private val mug = Product("MUG", "Cabify Coffee Mug", 7.5)
+    private val products = listOf(voucher, tShirt, mug)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @get:Rule
