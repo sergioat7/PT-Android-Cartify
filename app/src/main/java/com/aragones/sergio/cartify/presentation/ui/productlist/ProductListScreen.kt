@@ -56,6 +56,7 @@ fun ProductListScreenPreview() {
             Product("VOUCHER", "Cabify Voucher", 5.0),
             Product("VOUCHER", "Cabify Voucher", 5.0)
         ),
+        totalPrice = 5.0,
         onAddProduct = {},
         onRemoveProduct = {},
         onNavigateToCart = {}
@@ -66,6 +67,7 @@ fun ProductListScreenPreview() {
 fun ProductListScreen(
     products: List<Product>,
     cart: List<Product>,
+    totalPrice: Double,
     onAddProduct: (Product) -> Unit,
     onRemoveProduct: (Product) -> Unit,
     onNavigateToCart: () -> Unit
@@ -74,8 +76,6 @@ fun ProductListScreen(
     val buttonWidth = 100.dp
     val buttonHeight = 40.dp
     val buttonCornerRadius = 12.dp
-
-    val totalPrice = cart.sumOf { it.price }
 
     Column(
         modifier = Modifier

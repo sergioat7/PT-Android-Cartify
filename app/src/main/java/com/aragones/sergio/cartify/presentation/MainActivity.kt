@@ -48,6 +48,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         ProductListScreen(products = viewModel.products,
                             cart = viewModel.cart,
+                            totalPrice = viewModel.getPriceWithDiscounts(),
                             onAddProduct = { viewModel.addProduct(it) },
                             onRemoveProduct = { viewModel.removeProduct(it) },
                             onNavigateToCart = { navigationController.navigate(Routes.Cart.route) })

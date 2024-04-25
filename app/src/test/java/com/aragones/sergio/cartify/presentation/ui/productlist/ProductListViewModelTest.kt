@@ -1,6 +1,7 @@
 package com.aragones.sergio.cartify.presentation.ui.productlist
 
 import com.aragones.sergio.cartify.domain.ProductsRepository
+import com.aragones.sergio.cartify.domain.model.Discount
 import com.aragones.sergio.cartify.domain.model.Product
 import com.aragones.sergio.cartify.utils.MainCoroutineScopeRule
 import io.mockk.coEvery
@@ -17,8 +18,8 @@ class ProductListViewModelTest {
 
     private val repository: ProductsRepository = mockk()
     private lateinit var sut: ProductListViewModel
-    private val voucher = Product("VOUCHER", "Cabify Voucher", 5.0)
-    private val tShirt = Product("TSHIRT", "Cabify T-Shirt", 20.0)
+    private val voucher = Product("VOUCHER", "Cabify Voucher", 5.0, Discount.TWO_FOR_ONE)
+    private val tShirt = Product("TSHIRT", "Cabify T-Shirt", 20.0, Discount.MORE_THAN_3)
     private val mug = Product("MUG", "Cabify Coffee Mug", 7.5)
     private val products = listOf(voucher, tShirt, mug)
 
@@ -69,5 +70,25 @@ class ProductListViewModelTest {
         sut.removeProduct(product)
 
         Assert.assertEquals(0, sut.cart.size)
+    }
+
+    @Test
+    fun `GIVEN products WHEN get price with discounts THEN apply product discounts and return price`() {
+
+        sut.addProduct(voucher)
+        sut.addProduct(voucher)
+        sut.addProduct(voucher)
+        sut.addProduct(voucher)
+        sut.addProduct(mug)
+        sut.addProduct(mug)
+        sut.addProduct(mug)
+        sut.addProduct(tShirt)
+        sut.addProduct(tShirt)
+        sut.addProduct(tShirt)
+        sut.addProduct(tShirt)
+
+        val price = sut.getPriceWithDiscounts()
+
+        Assert.assertEquals(108.5, price, 0.0)
     }
 }

@@ -4,6 +4,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aragones.sergio.cartify.domain.ProductsRepository
+import com.aragones.sergio.cartify.domain.model.Discount
 import com.aragones.sergio.cartify.domain.model.Product
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -37,5 +38,32 @@ class ProductListViewModel @Inject constructor(
 
     fun removeProduct(product: Product) {
         _cart.remove(product)
+    }
+
+    fun getPriceWithDiscounts(): Double {
+
+        return cart.groupBy { it.code }.mapValues { values ->
+            val products = values.value
+
+            values.value.first().discount?.let { discount ->
+                when (discount) {
+                    Discount.TWO_FOR_ONE -> {
+                        products.chunked(2)
+                            .map { it.first() }
+                            .sumOf { it.price }
+                    }
+
+                    Discount.MORE_THAN_3 -> {
+                        if (products.size > 2) {
+                            products.sumOf { 19.0 }
+                        } else {
+                            products.sumOf { it.price }
+                        }
+                    }
+                }
+            } ?: run {
+                products.sumOf { it.price }
+            }
+        }.values.sum()
     }
 }
