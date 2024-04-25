@@ -1,8 +1,8 @@
 package com.aragones.sergio.cartify.domain
 
 import com.aragones.sergio.cartify.data.remote.ProductRemoteDataSource
-import com.aragones.sergio.cartify.data.remote.model.Product
 import com.aragones.sergio.cartify.data.remote.model.Products
+import com.aragones.sergio.cartify.domain.model.Product
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -12,6 +12,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import com.aragones.sergio.cartify.data.remote.model.Product as RemoteProduct
 
 class ProductsRepositoryTest {
 
@@ -19,12 +20,12 @@ class ProductsRepositoryTest {
     private lateinit var sut: ProductsRepository
     private val remoteProducts = Products(
         listOf(
-            Product("VOUCHER", "Cabify Voucher", 5.0),
-            Product("TSHIRT", "Cabify T-Shirt", 20.0),
-            Product("MUG", "Cabify Coffee Mug", 7.5)
+            RemoteProduct("VOUCHER", "Cabify Voucher", 5.0),
+            RemoteProduct("TSHIRT", "Cabify T-Shirt", 20.0),
+            RemoteProduct("MUG", "Cabify Coffee Mug", 7.5)
         )
     )
-    private val domainProducts = remoteProducts.products.map { it.toDomain() }
+    private val domainProducts: List<Product> = remoteProducts.products.map { it.toDomain() }
     private val exception = RuntimeException("Network error")
 
     @Before
