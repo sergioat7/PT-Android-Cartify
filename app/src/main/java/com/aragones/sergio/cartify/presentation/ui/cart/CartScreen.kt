@@ -17,12 +17,13 @@ fun CartScreenPreview() {
             Product("VOUCHER", "Cabify Voucher", 5.0),
             Product("VOUCHER", "Cabify Voucher", 5.0)
         ),
+        totalPrice = 5.0,
         onGoBack = {}
     )
 }
 
 @Composable
-fun CartScreen(cart: List<Product>, onGoBack: () -> Unit) {
+fun CartScreen(cart: List<Product>, totalPrice: Double, onGoBack: () -> Unit) {
 
     Column(
         modifier = Modifier

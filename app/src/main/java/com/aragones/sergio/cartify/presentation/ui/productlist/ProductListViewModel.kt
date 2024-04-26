@@ -42,27 +42,26 @@ class ProductListViewModel @Inject constructor(
 
     fun getPriceWithDiscounts(): Double {
 
-        return cart.groupBy { it.code }.mapValues { values ->
+        return cart.groupBy { it.discount }.mapValues { values ->
+
+            val discount = values.key
             val products = values.value
 
-            values.value.first().discount?.let { discount ->
-                when (discount) {
-                    Discount.TWO_FOR_ONE -> {
-                        products.chunked(2)
-                            .map { it.first() }
-                            .sumOf { it.price }
-                    }
+            when (discount) {
+                Discount.TWO_FOR_ONE -> {
+                    products.filterIndexed { index, _ -> index % 2 == 0 }
+                        .sumOf { it.price }
+                }
 
-                    Discount.MORE_THAN_3 -> {
-                        if (products.size > 2) {
-                            products.sumOf { 19.0 }
-                        } else {
-                            products.sumOf { it.price }
-                        }
+                Discount.MORE_THAN_3 -> {
+                    if (products.size > 2) {
+                        products.sumOf { 19.0 }
+                    } else {
+                        products.sumOf { it.price }
                     }
                 }
-            } ?: run {
-                products.sumOf { it.price }
+
+                null -> products.sumOf { it.price }
             }
         }.values.sum()
     }

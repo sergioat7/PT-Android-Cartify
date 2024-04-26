@@ -26,6 +26,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             CartifyTheme {
 
+                val price = viewModel.getPriceWithDiscounts()
+
                 val navigationController = rememberNavController()
                 NavHost(
                     navController = navigationController,
@@ -48,7 +50,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         ProductListScreen(products = viewModel.products,
                             cart = viewModel.cart,
-                            totalPrice = viewModel.getPriceWithDiscounts(),
+                            totalPrice = price,
                             onAddProduct = { viewModel.addProduct(it) },
                             onRemoveProduct = { viewModel.removeProduct(it) },
                             onNavigateToCart = { navigationController.navigate(Routes.Cart.route) })
@@ -70,6 +72,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         CartScreen(
                             cart = viewModel.cart,
+                            totalPrice = price,
                             onGoBack = { navigationController.navigateUp() }
                         )
                     }
