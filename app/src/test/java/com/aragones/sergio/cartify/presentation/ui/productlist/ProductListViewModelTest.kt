@@ -21,7 +21,7 @@ class ProductListViewModelTest {
     private val voucher = Product("VOUCHER", "Cabify Voucher", 5.0, Discount.TWO_FOR_ONE)
     private val tShirt = Product("TSHIRT", "Cabify T-Shirt", 20.0, Discount.MORE_THAN_3)
     private val mug = Product("MUG", "Cabify Coffee Mug", 7.5)
-    private val products = listOf(voucher, tShirt, mug)
+    private val products = listOf(voucher, tShirt, mug).sortedBy { it.code }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @get:Rule
@@ -68,6 +68,18 @@ class ProductListViewModelTest {
         Assert.assertEquals(1, sut.cart.size)
 
         sut.removeProduct(product)
+
+        Assert.assertEquals(0, sut.cart.size)
+    }
+
+    @Test
+    fun `GIVEN cart WHEN clear cart THEN remove all products from cart`() {
+
+        sut.addProduct(products.first())
+        sut.addProduct(products.last())
+        Assert.assertEquals(2, sut.cart.size)
+
+        sut.clearCart()
 
         Assert.assertEquals(0, sut.cart.size)
     }
