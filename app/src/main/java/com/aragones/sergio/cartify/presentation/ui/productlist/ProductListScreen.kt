@@ -1,5 +1,6 @@
 package com.aragones.sergio.cartify.presentation.ui.productlist
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -152,7 +153,7 @@ fun ProductListScreen(
                                 )
                             }
                         }
-                        if (count == 0) {
+                        AnimatedVisibility(visible = count == 0) {
                             CustomActionButton(
                                 onClick = { onAddProduct(product) },
                                 modifier = Modifier
@@ -163,7 +164,8 @@ fun ProductListScreen(
                                 enabled = true,
                                 text = "Add"
                             )
-                        } else {
+                        }
+                        AnimatedVisibility(visible = count != 0) {
                             Row(
                                 horizontalArrangement = Arrangement.Center,
                                 verticalAlignment = Alignment.CenterVertically,
@@ -219,7 +221,8 @@ fun ProductListScreen(
             }
         }
 
-        if (cart.isNotEmpty()) {
+        AnimatedVisibility(visible = cart.isNotEmpty()) {
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
