@@ -1,6 +1,6 @@
-package com.aragones.sergio.cartify.data.remote
+package com.aragones.sergio.data
 
-import com.aragones.sergio.cartify.data.remote.model.Products
+import com.aragones.sergio.data.model.Products
 import retrofit2.http.GET
 
 interface ProductApi {

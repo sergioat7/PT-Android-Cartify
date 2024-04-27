@@ -59,6 +59,7 @@ compose-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifes
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
 
 [bundles]
 compose = ["androidx-activity-compose", "androidx-ui", "androidx-ui-graphics", "androidx-ui-tooling-preview", "androidx-material", "compose-livedata"]

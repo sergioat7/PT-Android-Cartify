@@ -56,6 +56,8 @@ android {
 
 dependencies {
 
+    implementation(project(":data"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.livedata.ktx)
@@ -66,8 +68,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.compose.navigation)
-
-    implementation(libs.bundles.retrofit)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)

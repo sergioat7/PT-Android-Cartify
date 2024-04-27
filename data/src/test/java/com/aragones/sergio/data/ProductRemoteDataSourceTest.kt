@@ -1,7 +1,7 @@
-package com.aragones.sergio.cartify.data.remote
+package com.aragones.sergio.data
 
-import com.aragones.sergio.cartify.data.remote.model.Product
-import com.aragones.sergio.cartify.data.remote.model.Products
+import com.aragones.sergio.data.model.Product
+import com.aragones.sergio.data.model.Products
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

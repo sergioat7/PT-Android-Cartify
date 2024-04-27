@@ -1,7 +1,7 @@
 package com.aragones.sergio.cartify.domain
 
-import com.aragones.sergio.cartify.data.remote.ProductRemoteDataSource
 import com.aragones.sergio.cartify.domain.model.Product
+import com.aragones.sergio.data.ProductRemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

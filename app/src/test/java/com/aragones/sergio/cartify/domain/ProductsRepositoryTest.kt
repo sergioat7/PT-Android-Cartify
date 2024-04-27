@@ -1,8 +1,8 @@
 package com.aragones.sergio.cartify.domain
 
-import com.aragones.sergio.cartify.data.remote.ProductRemoteDataSource
-import com.aragones.sergio.cartify.data.remote.model.Products
 import com.aragones.sergio.cartify.domain.model.Product
+import com.aragones.sergio.data.ProductRemoteDataSource
+import com.aragones.sergio.data.model.Products
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -12,7 +12,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import com.aragones.sergio.cartify.data.remote.model.Product as RemoteProduct
+import com.aragones.sergio.data.model.Product as RemoteProduct
 
 class ProductsRepositoryTest {
 

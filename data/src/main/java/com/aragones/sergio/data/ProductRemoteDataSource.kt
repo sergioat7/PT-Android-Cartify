@@ -1,6 +1,6 @@
-package com.aragones.sergio.cartify.data.remote
+package com.aragones.sergio.data
 
-import com.aragones.sergio.cartify.data.remote.model.Products
+import com.aragones.sergio.data.model.Products
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

@@ -1,6 +1,6 @@
-package com.aragones.sergio.cartify.data.remote.di
+package com.aragones.sergio.data.di
 
-import com.aragones.sergio.cartify.data.remote.ProductApi
+import com.aragones.sergio.data.ProductApi
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides

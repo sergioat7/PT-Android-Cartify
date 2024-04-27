@@ -1,4 +1,4 @@
-package com.aragones.sergio.cartify.data.remote.model
+package com.aragones.sergio.data.model
 
 data class Products(
     val products: List<Product>
