@@ -24,6 +24,7 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -76,7 +77,7 @@ fun CartScreen(
                 )
             },
             navigationIcon = {
-                IconButton(onClick = { onGoBack() }) {
+                IconButton(onClick = { onGoBack() }, modifier = Modifier.testTag("backButton")) {
                     Icon(
                         Icons.Default.ArrowBack,
                         contentDescription = "",
@@ -87,7 +88,9 @@ fun CartScreen(
             actions = {
                 Text(
                     text = "$totalPrice €",
-                    modifier = Modifier.padding(end = 24.dp),
+                    modifier = Modifier
+                        .padding(end = 24.dp)
+                        .testTag("totalPrice"),
                     style = TextStyle(
                         color = MaterialTheme.colors.primary,
                         fontWeight = FontWeight.Bold,
@@ -104,7 +107,8 @@ fun CartScreen(
                 onClick = { onClearCart() },
                 modifier = Modifier
                     .align(Alignment.End)
-                    .padding(top = 24.dp, end = 24.dp),
+                    .padding(top = 24.dp, end = 24.dp)
+                    .testTag("clearCartButton"),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = MaterialTheme.colors.secondary
                 )
@@ -136,7 +140,8 @@ fun CartScreen(
                 Card(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(vertical = 12.dp),
+                        .padding(vertical = 12.dp)
+                        .testTag("productCard"),
                     backgroundColor = MaterialTheme.colors.secondary,
                     shape = RoundedCornerShape(8.dp)
                 ) {
@@ -153,6 +158,7 @@ fun CartScreen(
                         ) {
                             Text(
                                 text = productsName,
+                                modifier = Modifier.testTag("productName"),
                                 style = TextStyle(
                                     color = MaterialTheme.colors.onSecondary,
                                     fontWeight = FontWeight.Bold,
@@ -163,7 +169,9 @@ fun CartScreen(
                                 if (discountIsApplied) {
                                     Text(
                                         text = "$realPrice €",
-                                        modifier = Modifier.padding(top = 8.dp, end = 8.dp),
+                                        modifier = Modifier
+                                            .padding(top = 8.dp, end = 8.dp)
+                                            .testTag("productRealPrice"),
                                         style = TextStyle(
                                             color = MaterialTheme.colors.onSecondary,
                                             fontSize = 16.sp,
@@ -173,7 +181,9 @@ fun CartScreen(
                                 }
                                 Text(
                                     text = "$price €",
-                                    modifier = Modifier.padding(top = 8.dp),
+                                    modifier = Modifier
+                                        .padding(top = 8.dp)
+                                        .testTag("productPrice"),
                                     style = TextStyle(
                                         color = MaterialTheme.colors.onSecondary,
                                         fontSize = 16.sp
@@ -183,7 +193,7 @@ fun CartScreen(
                             if (discountIsApplied) {
                                 Text(
                                     text = "Discount applied: ${discount?.description}",
-                                    modifier = Modifier.padding(top = 8.dp),
+                                    modifier = Modifier.padding(top = 8.dp).testTag("discount"),
                                     style = TextStyle(
                                         color = MaterialTheme.colors.onSecondary,
                                         fontSize = 16.sp
@@ -202,7 +212,8 @@ fun CartScreen(
                 .fillMaxWidth(0.8f)
                 .height(100.dp)
                 .padding(24.dp)
-                .align(Alignment.CenterHorizontally),
+                .align(Alignment.CenterHorizontally)
+                .testTag("confirmOrderButton"),
             enabled = cart.isNotEmpty(),
             shape = RoundedCornerShape(24.dp),
             text = "Confirm order"
