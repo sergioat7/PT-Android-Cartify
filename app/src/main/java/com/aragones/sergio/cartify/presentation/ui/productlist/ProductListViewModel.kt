@@ -4,8 +4,8 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aragones.sergio.cartify.domain.ProductsRepository
-import com.aragones.sergio.cartify.domain.model.Discount
 import com.aragones.sergio.cartify.domain.model.Product
+import com.aragones.sergio.cartify.domain.model.getPriceFor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class ProductListViewModel @Inject constructor(
         repository.getProducts().collect { result ->
 
             if (result.isSuccess) {
-                _products.addAll(result.getOrDefault(listOf()))
+                _products.addAll(result.getOrDefault(listOf()).sortedBy { it.code })
             } else {
                 print("There were an error")//TODO: show error to user
             }
@@ -46,23 +46,7 @@ class ProductListViewModel @Inject constructor(
 
             val discount = values.key
             val products = values.value
-
-            when (discount) {
-                Discount.TWO_FOR_ONE -> {
-                    products.filterIndexed { index, _ -> index % 2 == 0 }
-                        .sumOf { it.price }
-                }
-
-                Discount.MORE_THAN_3 -> {
-                    if (products.size > 2) {
-                        products.sumOf { 19.0 }
-                    } else {
-                        products.sumOf { it.price }
-                    }
-                }
-
-                null -> products.sumOf { it.price }
-            }
+            discount.getPriceFor(products)
         }.values.sum()
     }
 }

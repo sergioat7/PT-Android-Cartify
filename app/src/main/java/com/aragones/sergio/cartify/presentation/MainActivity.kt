@@ -71,7 +71,7 @@ class MainActivity : ComponentActivity() {
                         }
                     ) {
                         CartScreen(
-                            cart = viewModel.cart,
+                            cart = viewModel.cart.sortedBy { it.code },
                             totalPrice = price,
                             onGoBack = { navigationController.navigateUp() }
                         )
