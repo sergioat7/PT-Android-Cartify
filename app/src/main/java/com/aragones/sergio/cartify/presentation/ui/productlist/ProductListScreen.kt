@@ -29,6 +29,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
@@ -44,6 +48,10 @@ import androidx.compose.ui.unit.sp
 import com.aragones.sergio.cartify.R
 import com.aragones.sergio.cartify.domain.model.Discount
 import com.aragones.sergio.cartify.domain.model.Product
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Preview
 @Composable
@@ -78,6 +86,8 @@ fun ProductListScreen(
     val buttonWidth = 100.dp
     val buttonHeight = 40.dp
     val buttonCornerRadius = 12.dp
+
+    var goToCartEnabled by rememberSaveable { mutableStateOf(true) }
 
     Column(
         modifier = Modifier
@@ -256,11 +266,20 @@ fun ProductListScreen(
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Button(
-                    onClick = { onNavigateToCart() },
+                    onClick = {
+                        goToCartEnabled = false
+                        onNavigateToCart()
+                        CoroutineScope(Dispatchers.Main).launch {
+                            delay(2000)
+                            goToCartEnabled = true
+                        }
+                    },
                     modifier = Modifier.testTag("viewCartButton"),
+                    enabled = goToCartEnabled,
                     contentPadding = PaddingValues(0.dp),
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = MaterialTheme.colors.primaryVariant
+                        backgroundColor = MaterialTheme.colors.primaryVariant,
+                        disabledBackgroundColor = MaterialTheme.colors.primaryVariant
                     )
                 ) {
                     Text(

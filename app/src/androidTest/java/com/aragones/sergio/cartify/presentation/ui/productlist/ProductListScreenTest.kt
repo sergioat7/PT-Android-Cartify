@@ -217,4 +217,29 @@ class ProductListScreenTest {
         composeTestRule.onNodeWithTag("viewCartButton").performClick()
         Assert.assertEquals(true, goToCart)
     }
+
+    @Test
+    fun given_cartSummaryBeingShown_when_clickViewCartSeveralTimes_then_navigateToCartJustOnce() {
+
+        var goToCart = 0
+
+        composeTestRule.setContent {
+            ProductListScreen(
+                products = products,
+                cart = listOf(voucher, mug, tShirt),
+                totalPrice = 0.0,
+                onAddProduct = {},
+                onRemoveProduct = {},
+                onNavigateToCart = {
+                    goToCart += 1
+                }
+            )
+        }
+
+        composeTestRule.onNodeWithTag("viewCartButton").performClick()
+        composeTestRule.onNodeWithTag("viewCartButton").performClick()
+        composeTestRule.onNodeWithTag("viewCartButton").performClick()
+        composeTestRule.onNodeWithTag("viewCartButton").performClick()
+        Assert.assertEquals(1, goToCart)
+    }
 }
