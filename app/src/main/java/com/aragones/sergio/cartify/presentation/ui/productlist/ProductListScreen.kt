@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -111,7 +112,8 @@ fun ProductListScreen(
                 Card(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(vertical = 12.dp),
+                        .padding(vertical = 12.dp)
+                        .testTag("productCard"),
                     backgroundColor = MaterialTheme.colors.primary,
                     shape = RoundedCornerShape(8.dp)
                 ) {
@@ -128,6 +130,7 @@ fun ProductListScreen(
                         ) {
                             Text(
                                 text = product.name,
+                                modifier = Modifier.testTag("productName"),
                                 style = TextStyle(
                                     color = MaterialTheme.colors.onPrimary,
                                     fontWeight = FontWeight.Bold,
@@ -136,7 +139,9 @@ fun ProductListScreen(
                             )
                             Text(
                                 text = "${product.price} €",
-                                modifier = Modifier.padding(top = 8.dp),
+                                modifier = Modifier
+                                    .padding(top = 8.dp)
+                                    .testTag("productPrice"),
                                 style = TextStyle(
                                     color = MaterialTheme.colors.onPrimary,
                                     fontSize = 16.sp
@@ -145,7 +150,9 @@ fun ProductListScreen(
                             product.discount?.let { discount ->
                                 Text(
                                     text = "Discount: ${discount.description}",
-                                    modifier = Modifier.padding(top = 8.dp),
+                                    modifier = Modifier
+                                        .padding(top = 8.dp)
+                                        .testTag("productDiscount"),
                                     style = TextStyle(
                                         color = MaterialTheme.colors.onPrimary,
                                         fontSize = 16.sp
@@ -161,7 +168,8 @@ fun ProductListScreen(
                                 onClick = { onAddProduct(product) },
                                 modifier = Modifier
                                     .width(buttonWidth)
-                                    .height(buttonHeight),
+                                    .height(buttonHeight)
+                                    .testTag("addProductButton"),
                                 shape = RoundedCornerShape(buttonCornerRadius),
                                 enabled = true,
                                 text = "Add"
@@ -176,11 +184,13 @@ fun ProductListScreen(
                                 modifier = Modifier
                                     .widthIn(buttonWidth, Dp.Unspecified)
                                     .height(buttonHeight)
+                                    .testTag("modifyProductCountButtons")
                             ) {
                                 CustomIconButton(
                                     icon = painterResource(id = R.drawable.baseline_remove_24),
                                     modifier = Modifier
-                                        .width(buttonHeight),
+                                        .width(buttonHeight)
+                                        .testTag("minusButton"),
                                     shape = RoundedCornerShape(
                                         topStart = buttonCornerRadius,
                                         bottomStart = buttonCornerRadius
@@ -197,7 +207,8 @@ fun ProductListScreen(
                                         text = "$count",
                                         modifier = Modifier
                                             .align(Alignment.Center)
-                                            .padding(horizontal = 4.dp),
+                                            .padding(horizontal = 4.dp)
+                                            .testTag("productCount"),
                                         style = TextStyle(
                                             color = MaterialTheme.colors.primary,
                                             fontWeight = FontWeight.Bold
@@ -208,7 +219,8 @@ fun ProductListScreen(
                                     icon = painterResource(id = R.drawable.baseline_add_24),
                                     modifier = Modifier
                                         .align(Alignment.CenterVertically)
-                                        .width(buttonHeight),
+                                        .width(buttonHeight)
+                                        .testTag("plusButton"),
                                     shape = RoundedCornerShape(
                                         topEnd = buttonCornerRadius,
                                         bottomEnd = buttonCornerRadius
@@ -229,10 +241,13 @@ fun ProductListScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(MaterialTheme.colors.primaryVariant)
+                    .testTag("cartSummary")
             ) {
                 Text(
                     text = "$totalPrice €",
-                    modifier = Modifier.padding(24.dp),
+                    modifier = Modifier
+                        .padding(24.dp)
+                        .testTag("totalPrice"),
                     style = TextStyle(
                         color = MaterialTheme.colors.onPrimary,
                         fontWeight = FontWeight.Bold,
@@ -242,6 +257,7 @@ fun ProductListScreen(
                 Spacer(modifier = Modifier.weight(1f))
                 Button(
                     onClick = { onNavigateToCart() },
+                    modifier = Modifier.testTag("viewCartButton"),
                     contentPadding = PaddingValues(0.dp),
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = MaterialTheme.colors.primaryVariant
@@ -249,7 +265,9 @@ fun ProductListScreen(
                 ) {
                     Text(
                         text = "View cart (${cart.count()})",
-                        modifier = Modifier.padding(24.dp),
+                        modifier = Modifier
+                            .padding(24.dp)
+                            .testTag("cartCount"),
                         style = TextStyle(
                             color = MaterialTheme.colors.onPrimary,
                             fontSize = 24.sp

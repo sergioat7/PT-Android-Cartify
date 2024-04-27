@@ -64,7 +64,7 @@ dependencies {
     implementation(libs.bundles.compose)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    
+
     implementation(libs.compose.navigation)
 
     implementation(libs.bundles.retrofit)
@@ -75,4 +75,5 @@ dependencies {
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.android.test)
     androidTestImplementation(platform(libs.androidx.compose.bom))
+    debugImplementation(libs.compose.test.manifest)
 }
