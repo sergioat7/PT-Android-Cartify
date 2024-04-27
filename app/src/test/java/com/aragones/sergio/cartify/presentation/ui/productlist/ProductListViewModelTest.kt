@@ -1,9 +1,9 @@
 package com.aragones.sergio.cartify.presentation.ui.productlist
 
-import com.aragones.sergio.cartify.domain.ProductsRepository
-import com.aragones.sergio.cartify.domain.model.Discount
-import com.aragones.sergio.cartify.domain.model.Product
 import com.aragones.sergio.cartify.utils.MainCoroutineScopeRule
+import com.aragones.sergio.domain.ProductsRepository
+import com.aragones.sergio.domain.model.Discount
+import com.aragones.sergio.domain.model.Product
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

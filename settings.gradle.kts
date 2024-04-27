@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Cartify"
 include(":app")
 include(":data")
+include(":domain")

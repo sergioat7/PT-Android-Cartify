@@ -13,8 +13,8 @@ import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onLast
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
-import com.aragones.sergio.cartify.domain.model.Discount
-import com.aragones.sergio.cartify.domain.model.Product
+import com.aragones.sergio.domain.model.Discount
+import com.aragones.sergio.domain.model.Product
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test

@@ -1,4 +1,4 @@
-package com.aragones.sergio.cartify.domain.model
+package com.aragones.sergio.domain.model
 
 enum class Discount(val description: String) {
     TWO_FOR_ONE("Buy 2, Pay 1"),

@@ -3,9 +3,9 @@ package com.aragones.sergio.cartify.presentation.ui.productlist
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aragones.sergio.cartify.domain.ProductsRepository
-import com.aragones.sergio.cartify.domain.model.Product
-import com.aragones.sergio.cartify.domain.model.getPriceFor
+import com.aragones.sergio.domain.ProductsRepository
+import com.aragones.sergio.domain.model.Product
+import com.aragones.sergio.domain.model.getPriceFor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

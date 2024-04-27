@@ -1,8 +1,8 @@
-package com.aragones.sergio.cartify.domain
+package com.aragones.sergio.domain
 
-import com.aragones.sergio.cartify.domain.model.Product
 import com.aragones.sergio.data.ProductRemoteDataSource
 import com.aragones.sergio.data.model.Products
+import com.aragones.sergio.domain.model.Product
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

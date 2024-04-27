@@ -46,8 +46,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.aragones.sergio.cartify.R
-import com.aragones.sergio.cartify.domain.model.Discount
-import com.aragones.sergio.cartify.domain.model.Product
+import com.aragones.sergio.domain.model.Discount
+import com.aragones.sergio.domain.model.Product
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

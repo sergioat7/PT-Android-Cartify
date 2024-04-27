@@ -1,4 +1,4 @@
-package com.aragones.sergio.cartify.domain.model
+package com.aragones.sergio.domain.model
 
 data class Product(
     val code: String,

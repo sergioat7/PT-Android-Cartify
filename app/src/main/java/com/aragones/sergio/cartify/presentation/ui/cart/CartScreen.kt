@@ -31,10 +31,10 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.aragones.sergio.cartify.domain.model.Discount
-import com.aragones.sergio.cartify.domain.model.Product
-import com.aragones.sergio.cartify.domain.model.getPriceFor
 import com.aragones.sergio.cartify.presentation.ui.productlist.CustomActionButton
+import com.aragones.sergio.domain.model.Discount
+import com.aragones.sergio.domain.model.Product
+import com.aragones.sergio.domain.model.getPriceFor
 
 @Preview
 @Composable
@@ -193,7 +193,9 @@ fun CartScreen(
                             if (discountIsApplied) {
                                 Text(
                                     text = "Discount applied: ${discount?.description}",
-                                    modifier = Modifier.padding(top = 8.dp).testTag("discount"),
+                                    modifier = Modifier
+                                        .padding(top = 8.dp)
+                                        .testTag("discount"),
                                     style = TextStyle(
                                         color = MaterialTheme.colors.onSecondary,
                                         fontSize = 16.sp
