@@ -40,6 +40,10 @@ class ProductListViewModel @Inject constructor(
         _cart.remove(product)
     }
 
+    fun clearCart() {
+        _cart.clear()
+    }
+
     fun getPriceWithDiscounts(): Double {
 
         return cart.groupBy { it.discount }.mapValues { values ->

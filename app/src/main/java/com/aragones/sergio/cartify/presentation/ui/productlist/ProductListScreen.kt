@@ -160,6 +160,7 @@ fun ProductListScreen(
                                     .width(buttonWidth)
                                     .height(buttonHeight),
                                 shape = RoundedCornerShape(buttonCornerRadius),
+                                enabled = true,
                                 text = "Add"
                             )
                         } else {
@@ -289,6 +290,7 @@ fun CustomIconButton(
 fun CustomActionButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    enabled: Boolean,
     shape: Shape,
     text: String
 ) {
@@ -296,6 +298,7 @@ fun CustomActionButton(
     Button(
         onClick = { onClick() },
         modifier = modifier,
+        enabled = enabled,
         shape = shape,
         colors = ButtonDefaults.buttonColors(
             backgroundColor = MaterialTheme.colors.secondary

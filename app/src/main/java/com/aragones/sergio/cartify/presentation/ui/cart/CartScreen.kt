@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -43,12 +45,18 @@ fun CartScreenPreview() {
             Product("MUG", "Cabify Coffee Mug", 7.5)
         ),
         totalPrice = 5.0,
-        onGoBack = {}
+        onGoBack = {},
+        onClearCart = {}
     )
 }
 
 @Composable
-fun CartScreen(cart: List<Product>, totalPrice: Double, onGoBack: () -> Unit) {
+fun CartScreen(
+    cart: List<Product>,
+    totalPrice: Double,
+    onGoBack: () -> Unit,
+    onClearCart: () -> Unit
+) {
 
     Column(
         modifier = Modifier
@@ -90,6 +98,20 @@ fun CartScreen(cart: List<Product>, totalPrice: Double, onGoBack: () -> Unit) {
             backgroundColor = MaterialTheme.colors.surface,
             elevation = 8.dp
         )
+
+        if (cart.isNotEmpty()) {
+            Button(
+                onClick = { onClearCart() },
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .padding(top = 24.dp, end = 24.dp),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = MaterialTheme.colors.secondary
+                )
+            ) {
+                Text(text = "Clear all")
+            }
+        }
 
         LazyColumn(
             modifier = Modifier
