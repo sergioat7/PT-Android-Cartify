@@ -153,11 +153,13 @@ fun ProductListScreen(
                                 )
                             }
                         }
-                        AnimatedVisibility(visible = count == 0) {
+                        AnimatedVisibility(
+                            visible = count == 0,
+                            modifier = Modifier.align(Alignment.CenterVertically)
+                        ) {
                             CustomActionButton(
                                 onClick = { onAddProduct(product) },
                                 modifier = Modifier
-                                    .align(Alignment.CenterVertically)
                                     .width(buttonWidth)
                                     .height(buttonHeight),
                                 shape = RoundedCornerShape(buttonCornerRadius),
@@ -165,19 +167,19 @@ fun ProductListScreen(
                                 text = "Add"
                             )
                         }
-                        AnimatedVisibility(visible = count != 0) {
+                        AnimatedVisibility(
+                            visible = count != 0,
+                            modifier = Modifier.align(Alignment.CenterVertically)
+                        ) {
                             Row(
                                 horizontalArrangement = Arrangement.Center,
-                                verticalAlignment = Alignment.CenterVertically,
                                 modifier = Modifier
-                                    .align(Alignment.CenterVertically)
                                     .widthIn(buttonWidth, Dp.Unspecified)
                                     .height(buttonHeight)
                             ) {
                                 CustomIconButton(
                                     icon = painterResource(id = R.drawable.baseline_remove_24),
                                     modifier = Modifier
-                                        .align(Alignment.CenterVertically)
                                         .width(buttonHeight),
                                     shape = RoundedCornerShape(
                                         topStart = buttonCornerRadius,
