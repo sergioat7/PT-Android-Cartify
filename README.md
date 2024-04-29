@@ -50,3 +50,11 @@ This app is written fully in Kotlin and Compose, and implements a Clean architec
 
 As a future improvement, would be great to implement a Room database and save cart in it, so user
 can close the app and keep selected products safe.
+
+---
+---
+---
+
+![product_list](https://github.com/sergioat7/PT-Android-Cartify/assets/23210811/32d30a45-00e0-42a6-82a5-a8a3ba33c6d9)
+---
+![cart](https://github.com/sergioat7/PT-Android-Cartify/assets/23210811/d72dbc58-1257-4270-be0e-757943e178b2)
